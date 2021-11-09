@@ -4,6 +4,29 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+document.getElementById('modal').className = 'hidden';
+
+
+
+document.addEventListener('click', (e) =>{
+  e.preventDefault();
+  mimicServerCall().then((value)=>{
+    if (value === 'Pretend remote server notified of action!'){
+      e.target.innerText = FULL_HEART
+      e.target.className = '.activate-heart'
+    }
+  })
+  .catch((value) =>{
+    document.getElementById('modal').classList.remove('hidden');
+    document.getElementById('modal-message').innerText = value
+    setTimeout(() => {document.getElementById('modal').className = 'hidden';
+  },3000)
+  })
+  
+})
+
+
+
 
 
 
